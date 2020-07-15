@@ -3,3 +3,4 @@ test.ipynb
 test.nii.gz
 utils/__pycache__/
 .DS_Store
+CTA.nii.gz
