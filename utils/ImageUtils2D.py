@@ -16,5 +16,6 @@ def padImage(image: ndarray, newShape: Tuple[int, int]) -> ndarray:
                               value=0)
 
 
+# TODO: resize by imaging spacing
 def resizeImage(image: ndarray, shape: Tuple[int, int]) -> ndarray:
     return cv2.resize(image, (shape[1], shape[0]))

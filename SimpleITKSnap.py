@@ -3,7 +3,6 @@ from PyQt5.QtWidgets import (QGridLayout, QGroupBox, QDialog,
                              QHBoxLayout, QLabel, QSlider, QVBoxLayout, QWidget)
 from PyQt5.QtGui import QImage, QPixmap
 
-
 from ViewModel import View3D
 from utils.ImageIO import createQPixmapFromArray
 
@@ -12,7 +11,7 @@ class SimpleITKSnap(QDialog):
     def __init__(self, imageFile: str):
         super(SimpleITKSnap, self).__init__()
         # load image
-        self.imageData = View3D(imageFile, (300, 300))
+        self.imageData = View3D(imageFile, (400, 400))
         self.imageShape = self.imageData.data.shape
 
         self.createXViewGroupBox()
@@ -55,18 +54,6 @@ class SimpleITKSnap(QDialog):
         # INDEX
         self.idxLabelZ.setText("{}/{}".format(self.z + 1, self.imageShape[2]))
 
-    # def createViewGroupBox(self, axis: str, name: str = ""):
-    #     self.ViewGroupBox[axis] = QGroupBox(name)
-
-    #     self.imLabel[axis] = QLabel()
-
-    #     slider = QSlider(Qt.Horizontal, self.XViewGroupBox)
-    #     slider.setMinimum(0)
-    #     slider.setMaximum(self.imageShape[0]-1)
-    #     slider.valueChanged.connect(self.setX)
-    #     # INDEX
-    #     self.idxLabelX = QLabel()
-
     def createXViewGroupBox(self):
         self.XViewGroupBox = QGroupBox("Horizontal plane")
         # IMAGE
@@ -74,7 +61,7 @@ class SimpleITKSnap(QDialog):
         # SLIDER
         slider = QSlider(Qt.Horizontal, self.XViewGroupBox)
         slider.setMinimum(0)
-        slider.setMaximum(self.imageShape[0]-1)
+        slider.setMaximum(self.imageShape[0] - 1)
         slider.valueChanged.connect(self.setX)
         # INDEX
         self.idxLabelX = QLabel()
@@ -96,7 +83,7 @@ class SimpleITKSnap(QDialog):
         # SLIDER
         slider = QSlider(Qt.Horizontal, self.YViewGroupBox)
         slider.setMinimum(0)
-        slider.setMaximum(self.imageShape[1]-1)
+        slider.setMaximum(self.imageShape[1] - 1)
         slider.valueChanged.connect(self.setY)
         # INDEX
         self.idxLabelY = QLabel()
@@ -118,7 +105,7 @@ class SimpleITKSnap(QDialog):
         # SLIDER
         slider = QSlider(Qt.Horizontal, self.ZViewGroupBox)
         slider.setMinimum(0)
-        slider.setMaximum(self.imageShape[2]-1)
+        slider.setMaximum(self.imageShape[2] - 1)
         slider.valueChanged.connect(self.setZ)
         # INDEX
         self.idxLabelZ = QLabel()

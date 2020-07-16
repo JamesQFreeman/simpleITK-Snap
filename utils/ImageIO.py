@@ -18,7 +18,7 @@ def createQPixmapFromArray(img: ndarray, fmt=QImage.Format_Grayscale8) -> QPixma
 def getArrayFromFig(fig) -> ndarray:
     plt.tight_layout()
     buf = io.BytesIO()
-    fig.savefig(buf, format="png", dpi=100)
+    fig.savefig(buf, format="png", dpi=75)
     buf.seek(0)
     imgArr = np.frombuffer(buf.getvalue(), dtype=np.uint8)
     buf.close()

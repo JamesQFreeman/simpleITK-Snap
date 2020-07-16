@@ -22,6 +22,7 @@ class View3D:
     def __init__(self, imgDir: str, displaySize: Tuple[int, int]) -> None:
         sitkImg = sitk.ReadImage(imgDir)
         self.spacing = sitkImg.GetSpacing()
+        # TODO: flip the array by position
         self.data = Data3D(sitk.GetArrayFromImage(sitkImg))
         self.grayScale8 = normalizeToGrayScale8(self.data.rawData)
         self.displaySize = displaySize
@@ -36,7 +37,8 @@ class View3D:
         return resizeImage(self.grayScale8[:, :, z], self.displaySize)
 
     def getHistogram(self) -> ndarray:
-        fig = plt.figure(figsize=(self.displaySize[0] // 100, self.displaySize[1] // 100))
+        fig = plt.figure(figsize=(self.displaySize[0] // 75, self.displaySize[1] // 75))
         ax = fig.add_subplot(111)
         ax.hist(self.data.rawData.flatten(), 128, [self.data.minVal, self.data.maxVal])
+        ax.set(xlabel='Value', ylabel='# Pixel', title='Histogram')
         return getArrayFromFig(fig)

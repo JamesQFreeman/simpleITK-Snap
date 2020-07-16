@@ -12,8 +12,6 @@ Let's see an example of a brain CT image.
 ### BUGS TO FIX
 1. Fix the position.
 2. Resize by imaging spacing.
-3. Refine the text in the GUI window.
-4. Open simpleITK-Snap by command line.
 
 ### FEATURES TO ADD
 - Add ```SimpleITKSnap.display(img: ndarray), SimpleITKSnap.show()```
