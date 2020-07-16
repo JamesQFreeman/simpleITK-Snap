@@ -9,7 +9,7 @@ Let's see an example of a brain CT image.
 ## DEV NOTE
 
 ### BUGS TO FIX
-1. Fix the histogram display problem by storing the original data instead of a processed one.
+1. Fix the position
 2. Resize by imaging spacing.
 3. Refine the text in the GUI window.
 4. Open simpleITK-Snap by command line.
