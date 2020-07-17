@@ -15,3 +15,5 @@ Let's see an example of a brain CT image.
 
 ### FEATURES TO ADD
 - Add ```SimpleITKSnap.display(img: ndarray), SimpleITKSnap.show()```
+- The lower right widget should be wrote as an extension not a fix format.
+- Write some example of extension, like Fourier Transform.args = get_args()
