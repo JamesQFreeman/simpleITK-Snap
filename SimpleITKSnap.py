@@ -3,15 +3,15 @@ from PyQt5.QtWidgets import (QGridLayout, QGroupBox, QDialog,
                              QHBoxLayout, QLabel, QSlider, QVBoxLayout, QWidget)
 from PyQt5.QtGui import QImage, QPixmap
 
-from ViewModel import View3D
+from ViewModel import FileView3D, View3D
 from utils.ImageIO import createQPixmapFromArray
 
 
 class SimpleITKSnap(QDialog):
-    def __init__(self, imageFile: str):
+    def __init__(self, view: View3D):
         super(SimpleITKSnap, self).__init__()
         # load image
-        self.imageData = View3D(imageFile, (400, 400))
+        self.imageData = view
         self.imageShape = self.imageData.data.shape
 
         self.createXViewGroupBox()

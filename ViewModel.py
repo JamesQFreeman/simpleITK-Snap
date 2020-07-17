@@ -9,22 +9,11 @@ from utils.ImageUtils2D import resizeImage
 from utils.ImageUtils3D import normalizeToGrayScale8
 
 
-class Data3D:
-    # Calculations happened in View3DCore
-    def __init__(self, img: ndarray):
-        self.rawData = img
-        self.shape = self.rawData.shape
-        self.maxVal = np.max(self.rawData)
-        self.minVal = np.min(self.rawData)
-
-
 class View3D:
-    def __init__(self, imgDir: str, displaySize: Tuple[int, int]) -> None:
-        sitkImg = sitk.ReadImage(imgDir)
-        self.spacing = sitkImg.GetSpacing()
-        # TODO: flip the array by position
-        self.data = Data3D(sitk.GetArrayFromImage(sitkImg))
-        self.grayScale8 = normalizeToGrayScale8(self.data.rawData)
+    def __init__(self, array: ndarray, displaySize: Tuple[int, int],
+                 spacing: Tuple[float, float, float] = (1, 1, 1)) -> None:
+        self.data = array
+        self.grayScale8 = normalizeToGrayScale8(self.data)
         self.displaySize = displaySize
 
     def getXSlice(self, x: int) -> ndarray:
@@ -39,6 +28,15 @@ class View3D:
     def getHistogram(self) -> ndarray:
         fig = plt.figure(figsize=(self.displaySize[0] // 75, self.displaySize[1] // 75))
         ax = fig.add_subplot(111)
-        ax.hist(self.data.rawData.flatten(), 128, [self.data.minVal, self.data.maxVal])
+        ax.hist(self.data.flatten(), 128, [np.min(self.data), np.max(self.data)])
         ax.set(xlabel='Value', ylabel='# Pixel', title='Histogram')
         return getArrayFromFig(fig)
+
+
+class FileView3D(View3D):
+    def __init__(self, imgDir: str, displaySize: Tuple[int, int]) -> None:
+        sitkImg = sitk.ReadImage(imgDir)
+        self.spacing = sitkImg.GetSpacing()
+        # TODO: flip the array by position
+        array = sitk.GetArrayFromImage(sitkImg)
+        super().__init__(array, displaySize, self.spacing)

@@ -4,6 +4,7 @@ import sys
 from PyQt5.QtWidgets import QApplication
 
 from SimpleITKSnap import SimpleITKSnap
+from ViewModel import FileView3D
 
 
 def getArgs():
@@ -15,7 +16,9 @@ def getArgs():
 
 if __name__ == '__main__':
     args = getArgs()
+    if not args.file:
+        raise Exception("No File")
     app = QApplication([])
-    gallery = SimpleITKSnap(args.file)
+    gallery = SimpleITKSnap(FileView3D(args.file, (400, 400)))
     gallery.show()
     sys.exit(app.exec_())

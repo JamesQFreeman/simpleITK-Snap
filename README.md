@@ -2,7 +2,8 @@
 
 It's a Qt-based 3D medical image visualization tool. The code is short thus easy to understand and modify. In short, it is an ITK-Snap in 200 lines!
 
-Let's see an example of a brain CT image.
+Let's see an example of a brain CT image:
+To open an image, simply type ```python simpleITK-Snap -f CTA.nii.gz```
 
 ![A CTA image opened in simpleITK-Snap](./example.gif)
 
@@ -16,4 +17,4 @@ Let's see an example of a brain CT image.
 ### FEATURES TO ADD
 - Add ```SimpleITKSnap.display(img: ndarray), SimpleITKSnap.show()```
 - The lower right widget should be wrote as an extension not a fix format.
-- Write some example of extension, like Fourier Transform.args = get_args()
+- Write some example of extension, like Fourier Transform
