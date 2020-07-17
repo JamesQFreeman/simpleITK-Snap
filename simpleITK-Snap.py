@@ -16,9 +16,10 @@ def getArgs():
 
 if __name__ == '__main__':
     args = getArgs()
-    if not args.file:
-        raise Exception("No File")
+    # if not args.file:
+    #     raise Exception("No File")
     app = QApplication([])
-    gallery = SimpleITKSnap(FileView3D(args.file, (400, 400)))
-    gallery.show()
+    main = SimpleITKSnap(FileView3D('CTA.nii.gz', (400, 400)))
+    # main = SimpleITKSnap(FileView3D(args.file, (400, 400)))
+    main.show()
     sys.exit(app.exec_())

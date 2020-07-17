@@ -28,7 +28,7 @@ class View3D:
     def getHistogram(self) -> ndarray:
         fig = plt.figure(figsize=(self.displaySize[0] // 75, self.displaySize[1] // 75))
         ax = fig.add_subplot(111)
-        ax.hist(self.data.flatten(), 128, [np.min(self.data), np.max(self.data)])
+        ax.hist(self.data.flatten(), 64, [np.min(self.data), np.max(self.data)])
         ax.set(xlabel='Value', ylabel='# Pixel', title='Histogram')
         return getArrayFromFig(fig)
 
@@ -36,7 +36,8 @@ class View3D:
 class FileView3D(View3D):
     def __init__(self, imgDir: str, displaySize: Tuple[int, int]) -> None:
         sitkImg = sitk.ReadImage(imgDir)
-        self.spacing = sitkImg.GetSpacing()
-        # TODO: flip the array by position
+        spacing = sitkImg.GetSpacing()
+        print('\n\n\n', spacing)
         array = sitk.GetArrayFromImage(sitkImg)
-        super().__init__(array, displaySize, self.spacing)
+        array = np.flip(array, 0)
+        super().__init__(array, displaySize, spacing)
