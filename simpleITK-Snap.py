@@ -19,7 +19,7 @@ if __name__ == '__main__':
     # if not args.file:
     #     raise Exception("No File")
     app = QApplication([])
-    main = SimpleITKSnap(FileView3D('CTA.nii.gz', (400, 400)))
+    main = SimpleITKSnap(FileView3D('CTA.nii.gz', (300, 300)))
     # main = SimpleITKSnap(FileView3D(args.file, (400, 400)))
     main.show()
     sys.exit(app.exec_())
