@@ -31,7 +31,7 @@ To open an image, simply type:
 python simpleITK-Snap -f YourFile.nii.gz
 ```
 
-![A CTA image opened in simpleITK-Snap](./example.gif)
+![A CTA image opened in simpleITK-Snap](./demo.gif)
 
 
 ## Dependency
