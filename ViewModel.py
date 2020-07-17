@@ -15,15 +15,16 @@ class View3D:
         self.data = array
         self.grayScale8 = normalizeToGrayScale8(self.data)
         self.displaySize = displaySize
+        self.spacing = spacing
 
     def getXSlice(self, x: int) -> ndarray:
-        return resizeImage(self.grayScale8[x, :, :], self.displaySize)
+        return resizeImage(self.grayScale8[x, :, :], self.displaySize, (self.spacing[0], self.spacing[1]))
 
     def getYSlice(self, y: int) -> ndarray:
-        return resizeImage(self.grayScale8[:, y, :], self.displaySize)
+        return resizeImage(self.grayScale8[:, y, :], self.displaySize, (self.spacing[0], self.spacing[2]))
 
     def getZSlice(self, z: int) -> ndarray:
-        return resizeImage(self.grayScale8[:, :, z], self.displaySize)
+        return resizeImage(self.grayScale8[:, :, z], self.displaySize, (self.spacing[1], self.spacing[2]))
 
     def getHistogram(self) -> ndarray:
         fig = plt.figure(figsize=(self.displaySize[0] // 75, self.displaySize[1] // 75))
@@ -37,7 +38,6 @@ class FileView3D(View3D):
     def __init__(self, imgDir: str, displaySize: Tuple[int, int]) -> None:
         sitkImg = sitk.ReadImage(imgDir)
         spacing = sitkImg.GetSpacing()
-        print('\n\n\n', spacing)
         array = sitk.GetArrayFromImage(sitkImg)
         array = np.flip(array, 0)
         super().__init__(array, displaySize, spacing)

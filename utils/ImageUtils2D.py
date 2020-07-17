@@ -6,15 +6,18 @@ import cv2
 
 def padImage(image: ndarray, newShape: Tuple[int, int]) -> ndarray:
     shape = image.shape
-    delta_h = shape[1] - newShape[1]
-    delta_w = shape[0] - newShape[0]
+    delta_h = newShape[0] - shape[0]
+    delta_w = newShape[1] - shape[1]
     top, bottom = delta_h // 2, delta_h - (delta_h // 2)
     left, right = delta_w // 2, delta_w - (delta_w // 2)
-
     return cv2.copyMakeBorder(image, top, bottom, left, right, cv2.BORDER_CONSTANT,
                               value=0)
 
 
-# TODO: resize by imaging spacing
-def resizeImage(image: ndarray, shape: Tuple[int, int]) -> ndarray:
-    return cv2.resize(image, (shape[1], shape[0]))
+def resizeImage(image: ndarray, shape: Tuple[int, int], spacing: Tuple[float, float]) -> ndarray:
+    physicalRatio = (image.shape[0] * spacing[0]) / (image.shape[1] * spacing[1])
+    orgShape = (image.shape[0], image.shape[1] * physicalRatio)
+    zoomRatio = min(shape[0] / orgShape[0], shape[1] / orgShape[0])
+    shapeBeforePad = (int(zoomRatio * orgShape[0]), int(zoomRatio * orgShape[1]))
+    resized = cv2.resize(image, (shapeBeforePad[1], shapeBeforePad[0]))
+    return padImage(resized, shape)

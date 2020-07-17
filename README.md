@@ -38,9 +38,6 @@ python simpleITK-Snap -f YourFile.nii.gz
 
 ## DEV NOTE
 
-### BUGS TO FIX
-1. Resize by imaging spacing.
-
 ### FEATURES TO ADD
 - Add ```SimpleITKSnap.display(img: ndarray), SimpleITKSnap.show()```
 - The lower right widget should be wrote as an extension not a fix format.
