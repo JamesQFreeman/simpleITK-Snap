@@ -1,4 +1,8 @@
-# simpleITK-Snap
+<div align="center">
+  <img width="500px" src="logo.png">
+</div>
+
+## Overview
 
 It's a Qt-based 3D medical image visualization tool. The code is short thus it's super easy to understand and modify. In short, it is an ITK-Snap in 200 lines!
 
