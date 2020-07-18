@@ -17,16 +17,16 @@ class SimpleITKSnap(QDialog):
         self.createXViewGroupBox()
         self.createYViewGroupBox()
         self.createZViewGroupBox()
-        self.createInfoGroupBox()
+        self.createExtensionGroupBox()
         mainLayout = QGridLayout()
         mainLayout.addWidget(self.XViewGroupBox, 1, 0)
         mainLayout.addWidget(self.YViewGroupBox, 1, 1)
         mainLayout.addWidget(self.ZViewGroupBox, 2, 0)
-        mainLayout.addWidget(self.infoGroupBox, 2, 1)
-        mainLayout.setRowStretch(1, 1)
-        mainLayout.setRowStretch(2, 1)
-        mainLayout.setColumnStretch(0, 1)
-        mainLayout.setColumnStretch(1, 1)
+        mainLayout.addWidget(self.ExtensionGroupBox, 2, 1)
+        # mainLayout.setRowStretch(1, 1)
+        # mainLayout.setRowStretch(2, 1)
+        # mainLayout.setColumnStretch(0, 1)
+        # mainLayout.setColumnStretch(1, 1)
         self.setLayout(mainLayout)
         self.setWindowTitle("Simple-ITKSnap")
 
@@ -120,8 +120,8 @@ class SimpleITKSnap(QDialog):
         layout.addStretch(1)
         self.ZViewGroupBox.setLayout(layout)
 
-    def createInfoGroupBox(self):
-        self.infoGroupBox = QGroupBox("Information")
+    def createExtensionGroupBox(self):
+        self.ExtensionGroupBox = QGroupBox("Information")
 
         self.HistoLabel = QLabel()
         image = self.imageData.getHistogram()
@@ -129,4 +129,4 @@ class SimpleITKSnap(QDialog):
             createQPixmapFromArray(image, QImage.Format_RGB888))
         layout = QVBoxLayout()
         layout.addWidget(self.HistoLabel)
-        self.infoGroupBox.setLayout(layout)
+        self.ExtensionGroupBox.setLayout(layout)
