@@ -42,6 +42,11 @@ python simpleITK-Snap -f YourFile.nii.gz
 
 ## DEV NOTE
 
+## TODO
+- The extension should work as a function 
+```
+(imageArray3D: ndarray,x:int,y:int,z:int) -> {"plt": null, "image": null, "text":str}
+```
 ### FEATURES TO ADD
 - Add ```SimpleITKSnap.display(img: ndarray), SimpleITKSnap.show()```
 - The lower right widget should be wrote as an extension not a fix format.
