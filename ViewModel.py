@@ -7,6 +7,7 @@ import SimpleITK as sitk
 from utils.ImageIO import getArrayFromFig
 from utils.ImageUtils2D import resizeImage
 from utils.ImageUtils3D import normalizeToGrayScale8
+from cv2 import resize
 
 
 class View3D:
@@ -26,10 +27,16 @@ class View3D:
     def getZSlice(self, z: int) -> ndarray:
         return resizeImage(self.grayScale8[:, :, z], self.displaySize, (self.spacing[1], self.spacing[2]))
 
+    def getExtensionInfo(self, extensionFunc, x: int, y: int, z: int) -> (ndarray, str):
+        img, s = extensionFunc(self.data, x, y, z)
+        return resize(img, self.displaySize), s
+
     def getHistogram(self) -> ndarray:
-        fig = plt.figure(figsize=(self.displaySize[0] // 75, self.displaySize[1] // 75))
+        fig = plt.figure(
+            figsize=(self.displaySize[0] // 75, self.displaySize[1] // 75))
         ax = fig.add_subplot(111)
-        ax.hist(self.data.flatten(), 64, [np.min(self.data), np.max(self.data)])
+        ax.hist(self.data.flatten(), 64, [
+            np.min(self.data), np.max(self.data)])
         ax.set(xlabel='Value', ylabel='# Pixel', title='Histogram')
         return getArrayFromFig(fig)
 

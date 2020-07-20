@@ -26,4 +26,3 @@ def getArrayFromFig(fig) -> ndarray:
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
     return img
-

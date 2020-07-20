@@ -22,7 +22,7 @@ class SimpleITKSnap(QDialog):
         mainLayout.addWidget(self.XViewGroupBox, 1, 0)
         mainLayout.addWidget(self.YViewGroupBox, 1, 1)
         mainLayout.addWidget(self.ZViewGroupBox, 2, 0)
-        mainLayout.addWidget(self.ExtensionGroupBox, 2, 1)
+        mainLayout.addWidget(self.extensionGroupBox, 2, 1)
         # mainLayout.setRowStretch(1, 1)
         # mainLayout.setRowStretch(2, 1)
         # mainLayout.setColumnStretch(0, 1)
@@ -121,12 +121,12 @@ class SimpleITKSnap(QDialog):
         self.ZViewGroupBox.setLayout(layout)
 
     def createExtensionGroupBox(self):
-        self.ExtensionGroupBox = QGroupBox("Information")
+        self.extensionGroupBox = QGroupBox("Information")
 
-        self.HistoLabel = QLabel()
+        self.extensionImageLabel = QLabel()
         image = self.imageData.getHistogram()
         self.HistoLabel.setPixmap(
             createQPixmapFromArray(image, QImage.Format_RGB888))
         layout = QVBoxLayout()
         layout.addWidget(self.HistoLabel)
-        self.ExtensionGroupBox.setLayout(layout)
+        self.extensionGroupBox.setLayout(layout)
