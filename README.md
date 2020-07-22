@@ -4,7 +4,9 @@
 
 ## Overview
 
-It's a Qt-based 3D medical image visualization tool. The code is short thus it's super easy to understand and modify. In short, it is an ITK-Snap in 200 lines!
+It's a Qt-based 3D medical image visualization tool. Unlike most visualization tool, SimpleITKSnap gives you more
+freedom via extension design.
+The code is short thus it's super easy to understand and modify. In short, it is an ITK-Snap in 200 lines!
 
 If you have any bug when using simpleITK-Snap, please put that on the issue.
 ## Install
