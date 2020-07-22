@@ -31,15 +31,6 @@ class View3D:
         img, s = extensionFunc(self.data, x, y, z)
         return resize(img, self.displaySize), s
 
-    def getHistogram(self) -> ndarray:
-        fig = plt.figure(
-            figsize=(self.displaySize[0] // 75, self.displaySize[1] // 75))
-        ax = fig.add_subplot(111)
-        ax.hist(self.data.flatten(), 64, [
-            np.min(self.data), np.max(self.data)])
-        ax.set(xlabel='Value', ylabel='# Pixel', title='Histogram')
-        return getArrayFromFig(fig)
-
 
 class FileView3D(View3D):
     def __init__(self, imgDir: str, displaySize: Tuple[int, int]) -> None:

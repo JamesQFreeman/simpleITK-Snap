@@ -5,6 +5,8 @@ from PyQt5.QtGui import QImage, QPixmap
 
 from ViewModel import FileView3D, View3D
 from utils.ImageIO import createQPixmapFromArray
+from Extension import histogram, FFT
+from PyQt5 import QtCore
 
 
 class SimpleITKSnap(QDialog):
@@ -14,21 +16,25 @@ class SimpleITKSnap(QDialog):
         self.imageData = view
         self.imageShape = self.imageData.data.shape
 
+        self.x, self.y, self.z = 0, 0, 0
+        self.extensionFunc = FFT
+        self.createExtensionGroupBox()
         self.createXViewGroupBox()
         self.createYViewGroupBox()
         self.createZViewGroupBox()
-        self.createExtensionGroupBox()
+
         mainLayout = QGridLayout()
         mainLayout.addWidget(self.XViewGroupBox, 1, 0)
         mainLayout.addWidget(self.YViewGroupBox, 1, 1)
         mainLayout.addWidget(self.ZViewGroupBox, 2, 0)
         mainLayout.addWidget(self.extensionGroupBox, 2, 1)
-        # mainLayout.setRowStretch(1, 1)
-        # mainLayout.setRowStretch(2, 1)
-        # mainLayout.setColumnStretch(0, 1)
-        # mainLayout.setColumnStretch(1, 1)
         self.setLayout(mainLayout)
         self.setWindowTitle("Simple-ITKSnap")
+
+    def refreshExtension(self):
+        image, text = self.imageData.getExtensionInfo(self.extensionFunc, self.x, self.y, self.z)
+        self.extensionImageLabel.setPixmap(createQPixmapFromArray(image, fmt=QImage.Format_RGB888))
+        self.extensionTextLabel.setText(text)
 
     def setX(self, x):
         self.x = x
@@ -37,6 +43,7 @@ class SimpleITKSnap(QDialog):
         self.imLabelX.setPixmap(createQPixmapFromArray(image))
         # INDEX
         self.idxLabelX.setText("{}/{}".format(self.x + 1, self.imageShape[0]))
+        # self.refreshExtension()
 
     def setY(self, y):
         self.y = y
@@ -45,6 +52,7 @@ class SimpleITKSnap(QDialog):
         self.imLabelY.setPixmap(createQPixmapFromArray(image))
         # INDEX
         self.idxLabelY.setText("{}/{}".format(self.y + 1, self.imageShape[1]))
+        # self.refreshExtension()
 
     def setZ(self, z):
         self.z = z
@@ -53,6 +61,7 @@ class SimpleITKSnap(QDialog):
         self.imLabelZ.setPixmap(createQPixmapFromArray(image))
         # INDEX
         self.idxLabelZ.setText("{}/{}".format(self.z + 1, self.imageShape[2]))
+        # self.refreshExtension()
 
     def createXViewGroupBox(self):
         self.XViewGroupBox = QGroupBox("Horizontal plane")
@@ -121,12 +130,17 @@ class SimpleITKSnap(QDialog):
         self.ZViewGroupBox.setLayout(layout)
 
     def createExtensionGroupBox(self):
-        self.extensionGroupBox = QGroupBox("Information")
+        self.extensionGroupBox = QGroupBox("Extension")
 
         self.extensionImageLabel = QLabel()
-        image = self.imageData.getHistogram()
-        self.HistoLabel.setPixmap(
-            createQPixmapFromArray(image, QImage.Format_RGB888))
+        self.extensionTextLabel = QLabel()
+
+        self.timer = QtCore.QTimer(self)
+        self.timer.setInterval(500)  # Throw event timeout with an interval of 500 milliseconds
+        self.timer.timeout.connect(self.refreshExtension)
+        self.timer.start()
+
         layout = QVBoxLayout()
-        layout.addWidget(self.HistoLabel)
+        layout.addWidget(self.extensionImageLabel)
+        layout.addWidget(self.extensionTextLabel)
         self.extensionGroupBox.setLayout(layout)
