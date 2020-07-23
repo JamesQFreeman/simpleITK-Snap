@@ -37,10 +37,10 @@ array = np.arange(0,256*256*256).reshape(256,256,256)
 sis.imshow(array, histogram)
 ```
 
-Let's see an example of a brain CT image:
-### Application Mode
-To open an image, simply type:
 
+### Application Mode
+Let's see an example of a brain CT image:
+To open an image, simply type:
 ```bash
 python simpleITK-Snap -f YourFile.nii.gz
 ```
@@ -56,5 +56,13 @@ python simpleITK-Snap -f YourFile.nii.gz
 - PyQt5
 
 
+## Coming Soon
+#### release 0.1.2
+- Test on Windows10, and Linux.
+#### release 0.1.3
+- Package the project to a ```.wheel```
+#### release 0.1.4
+- Add jupyter notebook support.
+
 ## Developer
-JamesQFreeman(wsheng@sjtu.edu.cn)
+SimpleITKSnap is started by JamesQFreeman(wsheng@sjtu.edu.cn).
