@@ -1,13 +1,12 @@
 from typing import Tuple
 
-import matplotlib.pyplot as plt
-import numpy as np
-from numpy import ndarray
 import SimpleITK as sitk
-from utils.ImageIO import getArrayFromFig
-from utils.ImageUtils2D import resizeImage
-from utils.ImageUtils3D import normalizeToGrayScale8
+import numpy as np
 from cv2 import resize
+from numpy import ndarray
+
+from utils.ImageUtils2D import resizeBySpacing
+from utils.ImageUtils3D import normalizeToGrayScale8
 
 
 class View3D:
@@ -19,13 +18,13 @@ class View3D:
         self.spacing = spacing
 
     def getXSlice(self, x: int) -> ndarray:
-        return resizeImage(self.grayScale8[x, :, :], self.displaySize, (self.spacing[0], self.spacing[1]))
+        return resizeBySpacing(self.grayScale8[x, :, :], self.displaySize, (self.spacing[0], self.spacing[1]))
 
     def getYSlice(self, y: int) -> ndarray:
-        return resizeImage(self.grayScale8[:, y, :], self.displaySize, (self.spacing[0], self.spacing[2]))
+        return resizeBySpacing(self.grayScale8[:, y, :], self.displaySize, (self.spacing[0], self.spacing[2]))
 
     def getZSlice(self, z: int) -> ndarray:
-        return resizeImage(self.grayScale8[:, :, z], self.displaySize, (self.spacing[1], self.spacing[2]))
+        return resizeBySpacing(self.grayScale8[:, :, z], self.displaySize, (self.spacing[1], self.spacing[2]))
 
     def getExtensionInfo(self, extensionFunc, x: int, y: int, z: int) -> (ndarray, str):
         img, s = extensionFunc(self.data, x, y, z)

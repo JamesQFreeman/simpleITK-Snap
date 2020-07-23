@@ -1,10 +1,12 @@
-import numpy as np
+from typing import Tuple
+
 import matplotlib.pyplot as plt
+import numpy as np
+from cv2 import cvtColor, COLOR_GRAY2RGB
 from numpy import ndarray
 from numpy.fft import fft2, fftshift
+
 from utils.ImageIO import getArrayFromFig
-from typing import Tuple
-from cv2 import cvtColor, COLOR_GRAY2RGB
 
 
 def pltExtension(extension):

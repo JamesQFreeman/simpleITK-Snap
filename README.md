@@ -26,7 +26,7 @@ Then you are ready to go!
 
 ## Usage
 Let's see an example of a brain CT image:
-
+### Application Mode
 To open an image, simply type:
 
 ```bash
@@ -35,21 +35,25 @@ python simpleITK-Snap -f YourFile.nii.gz
 
 ![A CTA image opened in simpleITK-Snap](./demo.gif)
 
-
+### In-place Mode
+You can open 3D image in python code.
+```python
+import SimpleITKSnap as sis
+array = np.arange(0,256*256*256).reshape(256,256,256)
+sis.imshow(array)
+```
 ## Dependency
+- python3
 - SimpleITK
 - numpy
-- opencv-python<4.2
+- opencv-python
 - PyQt5
 
 ## DEV NOTE
 
 ## TODO
-- The extension should work as a function 
-```
-(imageArray3D: ndarray,x:int,y:int,z:int) -> {"plt": null, "image": null, "text":str}
-```
+- Test SimpleITKSnap on multiple image formats, OS.
 ### FEATURES TO ADD
 - Add ```SimpleITKSnap.display(img: ndarray), SimpleITKSnap.show()```
-- The lower right widget should be wrote as an extension not a fix format.
-- Write some example of extension, like Fourier Transform
+## Developer
+JamesQFreeman(wsheng@sjtu.edu.cn)

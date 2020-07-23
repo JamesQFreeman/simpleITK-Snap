@@ -1,10 +1,10 @@
-import numpy as np
-from numpy import ndarray
-from PyQt5.QtGui import QImage, QPixmap
 import io
 
 import cv2
 import matplotlib.pyplot as plt
+import numpy as np
+from PyQt5.QtGui import QImage, QPixmap
+from numpy import ndarray
 
 
 def createQPixmapFromArray(img: ndarray, fmt=QImage.Format_Grayscale8) -> QPixmap:

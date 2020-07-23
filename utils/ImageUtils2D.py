@@ -1,7 +1,7 @@
-from numpy import ndarray
 from typing import Tuple
 
 import cv2
+from numpy import ndarray
 
 
 def padImage(image: ndarray, newShape: Tuple[int, int]) -> ndarray:
@@ -14,7 +14,7 @@ def padImage(image: ndarray, newShape: Tuple[int, int]) -> ndarray:
                               value=0)
 
 
-def resizeImage(image: ndarray, shape: Tuple[int, int], spacing: Tuple[float, float]) -> ndarray:
+def resizeBySpacing(image: ndarray, shape: Tuple[int, int], spacing: Tuple[float, float]) -> ndarray:
     physicalRatio = (image.shape[0] * spacing[0]) / (image.shape[1] * spacing[1])
     orgShape = (image.shape[0], image.shape[1] * physicalRatio)
     zoomRatio = min(shape[0] / orgShape[0], shape[1] / orgShape[0])

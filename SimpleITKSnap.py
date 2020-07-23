@@ -1,23 +1,26 @@
-from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import (QGridLayout, QGroupBox, QDialog,
-                             QHBoxLayout, QLabel, QSlider, QVBoxLayout, QWidget)
-from PyQt5.QtGui import QImage, QPixmap
+import sys
 
-from ViewModel import FileView3D, View3D
-from utils.ImageIO import createQPixmapFromArray
-from Extension import histogram, FFT
 from PyQt5 import QtCore
+from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QImage
+from PyQt5.QtWidgets import (QApplication, QGridLayout, QGroupBox, QDialog,
+                             QLabel, QSlider, QVBoxLayout)
+from numpy import ndarray
+
+from Extension import histogram
+from ViewModel import View3D
+from utils.ImageIO import createQPixmapFromArray
 
 
-class SimpleITKSnap(QDialog):
-    def __init__(self, view: View3D):
-        super(SimpleITKSnap, self).__init__()
+class MainWindow(QDialog):
+    def __init__(self, view: View3D, extensionFunc=histogram):
+        super().__init__()
         # load image
         self.imageData = view
         self.imageShape = self.imageData.data.shape
 
         self.x, self.y, self.z = 0, 0, 0
-        self.extensionFunc = FFT
+        self.extensionFunc = extensionFunc
         self.createExtensionGroupBox()
         self.createXViewGroupBox()
         self.createYViewGroupBox()
@@ -141,6 +144,14 @@ class SimpleITKSnap(QDialog):
         self.timer.start()
 
         layout = QVBoxLayout()
-        layout.addWidget(self.extensionImageLabel)
         layout.addWidget(self.extensionTextLabel)
+        layout.addWidget(self.extensionImageLabel)
         self.extensionGroupBox.setLayout(layout)
+
+
+def imshow(array: ndarray, extensionFunc):
+    app = QApplication([])
+    main = MainWindow(View3D(array, (400, 400)), extensionFunc)
+    main.show()
+    sys.exit(app.exec_())
+
