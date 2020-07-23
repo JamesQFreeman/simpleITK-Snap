@@ -3,6 +3,7 @@ import sys
 
 from PyQt5.QtWidgets import QApplication
 
+from SimpleITKSnap.Extension import FFT
 from SimpleITKSnap.View import MainWindow
 from SimpleITKSnap.ViewModel import FileView3D
 
@@ -19,7 +20,7 @@ if __name__ == '__main__':
     # if not args.file:
     #     raise Exception("No File")
     app = QApplication([])
-    main = MainWindow(FileView3D('CTA.nii.gz', (400, 400)))
+    main = MainWindow(FileView3D('CTA.nii.gz', (400, 400)), FFT)
     # main = MainWindow(view=FileView3D(args.file, (400, 400)))
     main.show()
     sys.exit(app.exec_())
