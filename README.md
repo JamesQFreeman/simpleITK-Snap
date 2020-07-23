@@ -3,12 +3,14 @@
 </div>
 
 ## Overview
+SimpleITKSnap is a 3D-image visualization tool. SimpleITKSnap is developed to bridge the gap between 3D-image process
+programming and its visualization. Comparing to the existing method, SimpleITKSnap have these advantage:
+1. "In-place" display like matplotlib: ```sis.imshow(yourArray)```. 
+You don't need to save your processed result to disk, open ITK-SNAP, find the file and load it again.
+2. Extension-based design, meet your visualization demand by writing your own extension. 
+The extension development requires minimal code and is super easy to develop.
 
-It's a Qt-based 3D medical image visualization tool. Unlike most visualization tool, SimpleITKSnap gives you more
-freedom via extension design.
-The code is short thus it's super easy to understand and modify. In short, it is an ITK-Snap in 200 lines!
 
-If you have any bug when using simpleITK-Snap, please put that on the issue.
 ## Install
 First, clone this repo to your local environment:
 
@@ -25,6 +27,16 @@ pip install -r requirements.txt
 Then you are ready to go!
 
 ## Usage
+
+### In-place Mode
+You can open 3D image in python code.
+```python
+import SimpleITKSnap as sis
+from SimpleITKSnap.Extension import histogram
+array = np.arange(0,256*256*256).reshape(256,256,256)
+sis.imshow(array, histogram)
+```
+
 Let's see an example of a brain CT image:
 ### Application Mode
 To open an image, simply type:
@@ -35,13 +47,7 @@ python simpleITK-Snap -f YourFile.nii.gz
 
 ![A CTA image opened in simpleITK-Snap](./demo.gif)
 
-### In-place Mode
-You can open 3D image in python code.
-```python
-import SimpleITKSnap as sis
-array = np.arange(0,256*256*256).reshape(256,256,256)
-sis.imshow(array)
-```
+
 ## Dependency
 - python3
 - SimpleITK
@@ -49,11 +55,6 @@ sis.imshow(array)
 - opencv-python
 - PyQt5
 
-## DEV NOTE
 
-## TODO
-- Test SimpleITKSnap on multiple image formats, OS.
-### FEATURES TO ADD
-- Add ```SimpleITKSnap.display(img: ndarray), SimpleITKSnap.show()```
 ## Developer
 JamesQFreeman(wsheng@sjtu.edu.cn)
