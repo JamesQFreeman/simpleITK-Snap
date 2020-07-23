@@ -1,9 +1,12 @@
 test.ipynb
 .vscode/
 test.nii.gz
-utils/__pycache__/
+SimpleITKSnap/utils/__pycache__/
 .DS_Store
 CTA.nii.gz
 venv/
 .idea/
 __pycache__/
+dist/
+build/
+SimpleITKSnap.egg-info/

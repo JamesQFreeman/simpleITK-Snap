@@ -6,7 +6,7 @@ from cv2 import cvtColor, COLOR_GRAY2RGB
 from numpy import ndarray
 from numpy.fft import fft2, fftshift
 
-from utils.ImageIO import getArrayFromFig
+from SimpleITKSnap.utils.ImageIO import getArrayFromFig
 
 
 def pltExtension(extension):

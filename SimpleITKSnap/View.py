@@ -7,9 +7,9 @@ from PyQt5.QtWidgets import (QApplication, QGridLayout, QGroupBox, QDialog,
                              QLabel, QSlider, QVBoxLayout)
 from numpy import ndarray
 
-from Extension import histogram
-from ViewModel import View3D
-from utils.ImageIO import createQPixmapFromArray
+from SimpleITKSnap.Extension import histogram
+from SimpleITKSnap.ViewModel import View3D
+from SimpleITKSnap.utils.ImageIO import createQPixmapFromArray
 
 
 class MainWindow(QDialog):
@@ -154,4 +154,3 @@ def imshow(array: ndarray, extensionFunc):
     main = MainWindow(View3D(array, (400, 400)), extensionFunc)
     main.show()
     sys.exit(app.exec_())
-

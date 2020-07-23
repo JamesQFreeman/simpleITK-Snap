@@ -3,8 +3,8 @@ import sys
 
 from PyQt5.QtWidgets import QApplication
 
-from SimpleITKSnap import MainWindow
-from ViewModel import FileView3D
+from SimpleITKSnap.View import MainWindow
+from SimpleITKSnap.ViewModel import FileView3D
 
 
 def getArgs():
@@ -16,10 +16,10 @@ def getArgs():
 
 if __name__ == '__main__':
     args = getArgs()
-    if not args.file:
-        raise Exception("No File")
+    # if not args.file:
+    #     raise Exception("No File")
     app = QApplication([])
-    # main = MainWindow(FileView3D('CTA.nii.gz', (400, 400)))
-    main = MainWindow(view=FileView3D(args.file, (400, 400)))
+    main = MainWindow(FileView3D('CTA.nii.gz', (400, 400)))
+    # main = MainWindow(view=FileView3D(args.file, (400, 400)))
     main.show()
     sys.exit(app.exec_())

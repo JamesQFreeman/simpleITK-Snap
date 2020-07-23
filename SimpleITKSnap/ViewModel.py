@@ -5,8 +5,8 @@ import numpy as np
 from cv2 import resize
 from numpy import ndarray
 
-from utils.ImageUtils2D import resizeBySpacing
-from utils.ImageUtils3D import normalizeToGrayScale8
+from SimpleITKSnap.utils.ImageUtils2D import resizeBySpacing
+from SimpleITKSnap.utils.ImageUtils3D import normalizeToGrayScale8
 
 
 class View3D:
