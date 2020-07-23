@@ -6,9 +6,7 @@
 SimpleITKSnap is a 3D-image visualization tool. SimpleITKSnap is developed to bridge the gap between 3D-image process
 programming and its visualization. Comparing to the existing method, SimpleITKSnap have these advantage:
 
-<div align="center">
-    <img src="demoCode.png" height="270px"></a>  <img src="demo.gif" height="270px">
-</div>
+<img src="demoCode.png" height="270px"></a>  <img src="demo.gif" height="270px">
 
 1. Matplotlib-style display: ```SimpleITKSnap.imshow(yourArray)```. 
 You don't need to save your processed result to disk, open ITK-SNAP, find the file and load it again.
