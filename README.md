@@ -67,13 +67,21 @@ def yourExtention(array3d:ndarray, x:int, y:int, z:int) -> Tuple[ndarray,str]:
     return processed_2d_image, "Extention display test at {}, {}, {}".format(x,y,z)
 ```
 
-## Dependency
+## Dependency & Compatibility
+
+SimpleITKSnap is based on:
 - python3
 - SimpleITK
 - numpy
 - opencv-python
 - PyQt5
 
+Compatibility Test Status:
+
+|       | Windows 10  | OS X | Linux |
+|-------|-------------|------|-------|
+| Build | ![Build Status](https://img.shields.io/badge/Build-Pass-green) | ![Build Status](https://img.shields.io/badge/Build-Pass-green) | ![Build Status](https://img.shields.io/badge/Build-Pass-green) |
+| PyPI  |                                                                | ![Build Status](https://img.shields.io/badge/Build-Pass-green) |                                                                |
 
 ## Coming Soon
 #### release 0.1.2

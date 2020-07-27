@@ -1,1 +1,1 @@
-from .View import imshow
+from .View import imshow, fileshow
