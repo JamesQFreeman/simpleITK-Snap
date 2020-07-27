@@ -1,8 +1,9 @@
 <div align="center">
   <img width="700px" src="logo.png">
+  <br/>
+  <img src="https://img.shields.io/badge/Version-0.1.2--alpha-brightgreen">
 </div>
 
-![Version](https://img.shields.io/badge/Version-0.1.2--alpha-brightgreen)
 
 ## Overview
 SimpleITKSnap is a 3D-image visualization tool. SimpleITKSnap is developed to bridge the gap between 3D-image process
