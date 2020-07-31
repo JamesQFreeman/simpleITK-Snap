@@ -87,12 +87,12 @@ Compatibility Test Status:
 | PyPI  |                                                                | ![Build Status](https://img.shields.io/badge/Build-Pass-green) |                                                                |
 
 ## Coming Soon
-#### release 0.1.2
-- Test on Windows10, and Linux.
 #### release 0.1.3
-- Package the project to a ```.wheel```
+- Acceleration using `lru_cache`.
 #### release 0.1.4
+- Package the project to a `.wheel`
+#### release 0.1.5
 - Add jupyter notebook support.
 
 ## Developer
-SimpleITKSnap is started by JamesQFreeman(wsheng@sjtu.edu.cn).
+This project is started by JamesQFreeman(wsheng@sjtu.edu.cn) and supported by SJTU MIC lab. 

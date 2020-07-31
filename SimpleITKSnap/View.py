@@ -139,7 +139,7 @@ class MainWindow(QDialog):
         self.extensionTextLabel = QLabel()
 
         self.timer = QtCore.QTimer(self)
-        self.timer.setInterval(500)  # Throw event timeout with an interval of 500 milliseconds
+        self.timer.setInterval(100)  # Throw event timeout with an interval of 500 milliseconds
         self.timer.timeout.connect(self.refreshExtension)
         self.timer.start()
 

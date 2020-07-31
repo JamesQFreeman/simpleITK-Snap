@@ -1,6 +1,7 @@
 from typing import Tuple
 
 import cv2
+import numpy as np
 from numpy import ndarray
 
 
@@ -21,3 +22,10 @@ def resizeBySpacing(image: ndarray, shape: Tuple[int, int], spacing: Tuple[float
     shapeBeforePad = (int(zoomRatio * orgShape[0]), int(zoomRatio * orgShape[1]))
     resized = cv2.resize(image, (shapeBeforePad[1], shapeBeforePad[0]))
     return padImage(resized, shape)
+
+
+def toGray8(img: ndarray):
+    result = img.copy()
+    cv2.normalize(img, result, 0, 255, cv2.NORM_MINMAX)
+    print(result.shape)
+    return result.astype(np.uint8)
