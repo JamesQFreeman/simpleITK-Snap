@@ -7,7 +7,7 @@ from PyQt5.QtWidgets import (QApplication, QGridLayout, QGroupBox, QDialog,
                              QLabel, QSlider, QVBoxLayout)
 from numpy import ndarray
 
-from SimpleITKSnap.Extension import histogram
+from SimpleITKSnap.Extension import histogram, defaultBlank
 from SimpleITKSnap.ViewModel import View3D, FileView3D
 from SimpleITKSnap.utils.ImageIO import createQPixmapFromArray
 
@@ -35,8 +35,10 @@ class MainWindow(QDialog):
         self.setWindowTitle("Simple-ITKSnap")
 
     def refreshExtension(self):
-        image, text = self.imageData.getExtensionInfo(self.extensionFunc, self.x, self.y, self.z)
-        self.extensionImageLabel.setPixmap(createQPixmapFromArray(image, fmt=QImage.Format_RGB888))
+        image, text = self.imageData.getExtensionInfo(
+            self.extensionFunc, self.x, self.y, self.z)
+        self.extensionImageLabel.setPixmap(
+            createQPixmapFromArray(image, fmt=QImage.Format_RGB888))
         self.extensionTextLabel.setText(text)
 
     def setX(self, x):
@@ -139,7 +141,8 @@ class MainWindow(QDialog):
         self.extensionTextLabel = QLabel()
 
         self.timer = QtCore.QTimer(self)
-        self.timer.setInterval(100)  # Throw event timeout with an interval of 500 milliseconds
+        # Throw event timeout with an interval of 500 milliseconds
+        self.timer.setInterval(100)
         self.timer.timeout.connect(self.refreshExtension)
         self.timer.start()
 
@@ -149,15 +152,23 @@ class MainWindow(QDialog):
         self.extensionGroupBox.setLayout(layout)
 
 
-def imshow(array: ndarray, extensionFunc):
-    app = QApplication([])
+def imshow(array: ndarray, extensionFunc=defaultBlank):
+    if not QApplication.instance():
+        app = QApplication(sys.argv)
+    else:
+        app = QApplication.instance() 
     main = MainWindow(View3D(array, (400, 400)), extensionFunc)
     main.show()
-    sys.exit(app.exec_())
+    app.exec_()
+    # sys.exit()
 
 
 def fileshow(file: str, extensionFunc):
-    app = QApplication([])
+    if not QApplication.instance():
+        app = QApplication(sys.argv)
+    else:
+        app = QApplication.instance() 
     main = MainWindow(FileView3D(file, (400, 400)), extensionFunc)
     main.show()
-    sys.exit(app.exec_())
+    app.exec_()
+    # sys.exit()

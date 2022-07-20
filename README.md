@@ -1,7 +1,7 @@
 <div align="center">
   <img width="700px" src="logo.png">
   <br/>
-  <img src="https://img.shields.io/badge/Version-0.1.2--alpha-brightgreen">
+  <img src="https://img.shields.io/badge/Version-0.1.3--alpha-brightgreen">
 </div>
 
 
@@ -86,13 +86,15 @@ Compatibility Test Status:
 | Build | ![Build Status](https://img.shields.io/badge/Build-Pass-green) | ![Build Status](https://img.shields.io/badge/Build-Pass-green) | ![Build Status](https://img.shields.io/badge/Build-Pass-green) |
 | PyPI  |                                                                | ![Build Status](https://img.shields.io/badge/Build-Pass-green) |                                                                |
 
-## Coming Soon
-#### release 0.1.3
-- Acceleration using `lru_cache`.
+## Release note and what's coming next
+
+At release 0.1.3, jupyter notebook is supported
 #### release 0.1.4
-- Package the project to a `.wheel`
+- Pypi support
+
 #### release 0.1.5
-- Add jupyter notebook support.
+- A doc
+- More extension examples
 
 ## Developer
 This project is started by JamesQFreeman(wsheng@sjtu.edu.cn) and supported by SJTU MIC lab. 

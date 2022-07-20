@@ -27,5 +27,5 @@ def resizeBySpacing(image: ndarray, shape: Tuple[int, int], spacing: Tuple[float
 def toGray8(img: ndarray):
     result = img.copy()
     cv2.normalize(img, result, 0, 255, cv2.NORM_MINMAX)
-    print(result.shape)
+    # print(result.shape)
     return result.astype(np.uint8)

@@ -30,7 +30,7 @@ class View3D:
         return resizeBySpacing(self.grayScale8[:, :, z], self.displaySize, (self.spacing[1], self.spacing[2]))
 
     @lru_cache(maxsize=128)
-    def getExtensionInfo(self, extensionFunc, x: int, y: int, z: int) -> (ndarray, str):
+    def getExtensionInfo(self, extensionFunc, x: int, y: int, z: int) -> Tuple[ndarray, str]:
         img, s = extensionFunc(self.data, x, y, z)
         return resize(img, self.displaySize), s
 
@@ -40,6 +40,6 @@ class FileView3D(View3D):
         sitkImg = sitk.ReadImage(imgDir)
         spacing = sitkImg.GetSpacing()
         array = sitk.GetArrayFromImage(sitkImg)
-        print(array.dtype)
+        # print(array.dtype)
         array = np.flip(array, 0)
         super().__init__(array, displaySize, spacing)
